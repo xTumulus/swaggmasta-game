@@ -90005,6 +90005,7 @@ MonoBehaviour:
   attackDuration: 0.25
   attackDelay: 0.5
   roomTransitionDelay: 0.5
+  maxHealth: 10
   currentInputDirection: -1
   currentCharacterDirection: 1
   mode: 0
@@ -90978,6 +90979,10 @@ PrefabInstance:
       propertyPath: m_ChildControlHeight
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6167934783847213343, guid: 319e4a4c443b1a204904f838a8fd8696, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -561531475, guid: a99d9e5a9a63259c990da934b8a53c4c, type: 3}
     - target: {fileID: 6291093986590467993, guid: 319e4a4c443b1a204904f838a8fd8696, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -91026,6 +91031,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6880645243761458850, guid: 319e4a4c443b1a204904f838a8fd8696, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -369586843, guid: a99d9e5a9a63259c990da934b8a53c4c, type: 3}
     - target: {fileID: 7274112389470681503, guid: 319e4a4c443b1a204904f838a8fd8696, type: 3}
       propertyPath: m_Sprite
       value: 

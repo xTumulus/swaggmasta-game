@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent( typeof(InRoom) )]
 public class Swagg: MonoBehaviour, IFacingMover
 {
+    static private Swagg instance;
     static public IFacingMover IFM;
 
     public enum eMode {
@@ -20,7 +21,7 @@ public class Swagg: MonoBehaviour, IFacingMover
     public float attackDuration = 0.25f;
     public float attackDelay = 0.5f;
     public float roomTransitionDelay = 0.5f;
-    // public int maxHealth = 10;
+    public int maxHealth = 10;
     // public float knockbackSpeed = 10;
     // public float knockbackDuration = 0.25f;
     // public float invincibleDuration = 0.5f;
