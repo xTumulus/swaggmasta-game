@@ -287,7 +287,6 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
         get { return _wallet; }
         set { _wallet = value; }
     }
-
     static public int WALLET { get {return instance._wallet;} }
 
     // IFacingMover Implementation

@@ -19,6 +19,7 @@ public class PanelSwaggGUI : MonoBehaviour
 
     Text dungeonKeyText;
     Text lootKeyText;
+    Text walletText;
     Image bossKeyIcon;
     List<Image> healthImages;
 
@@ -27,32 +28,26 @@ public class PanelSwaggGUI : MonoBehaviour
         Transform tempTransform;
 
         tempTransform = transform.Find("SwaggInventory");
-        Debug.Log(tempTransform.gameObject.name);
-        tempTransform = tempTransform.Find("Keys");
-        Debug.Log(tempTransform.gameObject.name);
+        tempTransform = tempTransform.Find("Countable");
         tempTransform = tempTransform.Find("KeysDungeon");
-        Debug.Log(tempTransform.gameObject.name);
         tempTransform = tempTransform.Find("KeyCount");
-        Debug.Log(tempTransform.gameObject.name);
         dungeonKeyText = tempTransform.GetComponent<Text>();
-        Debug.Log(tempTransform.gameObject.name);
 
         tempTransform = transform.Find("SwaggInventory");
-        Debug.Log(tempTransform.gameObject.name);
-        tempTransform = tempTransform.Find("Keys");
-        Debug.Log(tempTransform.gameObject.name);
+        tempTransform = tempTransform.Find("Countable");
         tempTransform = tempTransform.Find("KeysLoot");
-        Debug.Log(tempTransform.gameObject.name);
         tempTransform = tempTransform.Find("KeyCount");
         lootKeyText = tempTransform.GetComponent<Text>();
-        Debug.Log(tempTransform.gameObject.name);
 
         tempTransform = transform.Find("SwaggInventory");
-        Debug.Log(tempTransform.gameObject.name);
+        tempTransform = tempTransform.Find("Countable");
+        tempTransform = tempTransform.Find("Wallet");
+        tempTransform = tempTransform.Find("WalletCount");
+        walletText = tempTransform.GetComponent<Text>();
+
+        tempTransform = transform.Find("SwaggInventory");
         tempTransform = tempTransform.Find("Dungeon");
-        Debug.Log(tempTransform.gameObject.name);
         tempTransform = tempTransform.Find("IconBossKey");
-        Debug.Log(tempTransform.gameObject.name);
         bossKeyIcon = tempTransform.GetComponent<Image>();
 
         Transform healthPanel = transform.Find("Health");
@@ -75,6 +70,7 @@ public class PanelSwaggGUI : MonoBehaviour
 
         lootKeyText.text = Swagg.LOOT_KEYS.ToString();
         dungeonKeyText.text = Swagg.DUNGEON_KEYS.ToString();
+        walletText.text = Swagg.WALLET.ToString();
 
         int health = Swagg.HEALTH;
         for (int i = 0; i < healthImages.Count; i++) {
