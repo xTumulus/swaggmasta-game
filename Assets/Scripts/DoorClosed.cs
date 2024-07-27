@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[DisallowMultipleComponent]
 public class DoorClosed : MonoBehaviour
 {
     void OnCollisionEnter2D(Collision2D collision) {
