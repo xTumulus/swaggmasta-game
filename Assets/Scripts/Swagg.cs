@@ -13,7 +13,8 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
         move,
         attack,
         roomTransition,
-        knockback
+        knockback,
+        gadget
     }
 
     [Header("Inscribed")]
@@ -34,8 +35,11 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
     public bool invincible = false;
     public int healthFromPickup = 2;
     public bool hasGrappler = false;
-    // public Vector3 lastSafeLoc;
-    // public int lastSafeFacing;
+    public KeyCode keyAttack = KeyCode.Z;
+    public KeyCode keyGadget = KeyCode.X;
+
+    [SerializeField]
+    private bool startWithGrappler = true;
 
     [SerializeField] [Range(0, 10)]
     private int _health;
@@ -67,6 +71,7 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
     private Rigidbody2D rigid;
     private Animator animator;
     private InRoom inRm;
+    private Grappler grappler;
 
     private Vector2[] directions = new Vector2[] {
         Vector2.right, Vector2.up, Vector2.left, Vector2.down
@@ -85,7 +90,9 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
         animator = GetComponent<Animator>();
         inRm = GetComponent<InRoom>();
         health = maxHealth;
-        // keys = userprefs.keys
+        grappler = GetComponentInChildren<Grappler>();
+        if (startWithGrappler) currentGadget = grappler;
+        // TODO keys = userprefs.keys
     }
 
     void Update() {
@@ -139,8 +146,17 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
                 mode = eMode.move;
             }
 
+            if (Input.GetKeyDown(keyGadget)) {
+                if (currentGadget != null) {
+                    if (currentGadget.GadgetUse(this, GadgetIsDone)) {
+                        mode = eMode.gadget;
+                        rigid.velocity = Vector2.zero;
+                    }
+                }
+            }
+
             // Handle Attack Input
-            if (Input.GetKeyDown(KeyCode.Z) && Time.time >= timeAtkNext) {
+            if (Input.GetKeyDown(keyAttack) && Time.time >= timeAtkNext) {
                 mode = eMode.attack;
                 timeAtkDone = Time.time + attackDuration;
                 timeAtkNext = Time.time + attackDelay;
@@ -164,6 +180,10 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
                 vel = directions[currentInputDirection];
                 animator.CrossFade("Swagg_Walk_" + currentCharacterDirection, 0);
                 animator.speed = 1;
+                break;
+            case eMode.gadget:
+                animator.Play("Dray_Attack_" + currentCharacterDirection);
+                animator.speed = 0;
                 break;
         }
 
@@ -238,8 +258,10 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
             knockbackVel = delta * knockbackSpeed;
             rigid.velocity = knockbackVel;
 
-            mode = eMode.knockback;
-            knockbackDone = Time.time + knockbackDuration;
+            if (mode != eMode.gadget || currentGadget.GadgetCancel()) {
+                mode = eMode.knockback;
+                knockbackDone = Time.time + knockbackDuration;
+            }
         }
     }
 
@@ -346,4 +368,18 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
         get { return (Vector2) transform.position; }
     }
 
+
+    // IGadget
+    #region IGadget_Affordances
+    public IGadget currentGadget { get; private set; }
+
+    public bool GadgetIsDone(IGadget gadget) {
+        if (gadget != currentGadget) {
+            Debug.LogError("non-current gadget called GadgetDone");
+        }
+
+        mode = eMode.idle;
+        return true;
+    }
+    #endregion
 }

@@ -2,17 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IGadget : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public interface IGadget {
+    bool GadgetUse(Swagg tempSwagg, System.Func<IGadget, bool> tempCallback );
+    bool GadgetCancel();
+    string name { get; }
 }
