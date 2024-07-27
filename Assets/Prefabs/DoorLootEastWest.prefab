@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8018601500578639103}
   - component: {fileID: 3791980368183825872}
-  - component: {fileID: 653160710586428285}
+  - component: {fileID: 5721891795598320588}
   m_Layer: 6
   m_Name: DoorLootEastWest
   m_TagString: Untagged
@@ -80,7 +80,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 1}
   m_EdgeRadius: 0
---- !u!114 &653160710586428285
+--- !u!114 &5721891795598320588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 303058027817752614}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f64dc832f5bfd5209a79202cf2581e2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 56e11426cc10b065da23a10c3527f747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6586066192240985138

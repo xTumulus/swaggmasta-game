@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent( typeof(InRoom) )]
-public class Skeletos : Enemy, IFacingMover {
+public class Liz : Enemy, IFacingMover {
 
-    [Header("Inscribed: Skeletos")]
+    [Header("Inscribed: Liz")]
     public int speed = 2;
     public float timeThinkMin = 1f;
     public float timeThinkMax = 4f;
 
-    [Header("Dynamic: Skeletos")]
+    [Header("Dynamic: Liz")]
     [Range(0,4)]
     public int facing = 0;
     public float timeNextDecision = 0;
@@ -23,9 +23,13 @@ public class Skeletos : Enemy, IFacingMover {
     }
 
     protected override void Update() {
+        base.Update();
+        if (knockback) return;
+
         if (Time.time >= timeNextDecision) {
             DecideDirection();
         }
+
         rigid.velocity = directions[facing] * speed;
     }
 

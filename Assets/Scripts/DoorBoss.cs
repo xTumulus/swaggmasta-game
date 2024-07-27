@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorLocked : MonoBehaviour
+public class DoorBoss: MonoBehaviour
 {
     void OnCollisionStay2D(Collision2D collision) {
         // Debug.Log(collision.gameObject.name + " collided with " + gameObject.name);
@@ -15,8 +15,7 @@ public class DoorLocked : MonoBehaviour
         IKeyMaster keyMaster = collision.gameObject.GetComponent<IKeyMaster>();
         if (keyMaster == null) return;
 
-        if (keyMaster.dungeonKeys > 0) {
-            keyMaster.dungeonKeys--;
+        if (keyMaster.hasBossKey) {
             Destroy(gameObject);
         }
     }

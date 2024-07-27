@@ -178,6 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2492034449115554695}
   - component: {fileID: 2801589887386327297}
+  - component: {fileID: 4458124512601962146}
   m_Layer: 6
   m_Name: DoorClosedEastWest
   m_TagString: Untagged
@@ -245,5 +246,17 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4458124512601962146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3754648338169533270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd10771dd08308e018e94e7e099b9451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

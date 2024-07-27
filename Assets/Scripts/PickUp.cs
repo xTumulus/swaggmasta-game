@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    public enum eType { key, health, grappler }
+    public enum eType { health, money, key, grappler }
     public static float COLLIDER_DELAY = 0.5f;
 
     [Header("Set in Inspector")]

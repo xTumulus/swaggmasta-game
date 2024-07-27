@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4401072927616032401}
   - component: {fileID: 9142004848293765678}
-  - component: {fileID: 4523345559623645005}
+  - component: {fileID: -2180071966923598446}
   m_Layer: 6
   m_Name: DoorLootNorthSouth
   m_TagString: Untagged
@@ -166,7 +166,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 4}
   m_EdgeRadius: 0
---- !u!114 &4523345559623645005
+--- !u!114 &-2180071966923598446
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2952953893383429826}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f64dc832f5bfd5209a79202cf2581e2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 56e11426cc10b065da23a10c3527f747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6043486837985427277

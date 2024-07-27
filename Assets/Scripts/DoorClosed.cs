@@ -7,7 +7,9 @@ public class DoorClosed : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision) {
         Debug.Log("Door collided with " + collision.gameObject.name);
         if (collision.gameObject.GetComponent<Swagg>() != null) {
-            gameObject.active = false;
+            Destroy(gameObject);
         }
     }
+
+    // TODO need a method to open when all enemies are dead (base on room number?)
 }

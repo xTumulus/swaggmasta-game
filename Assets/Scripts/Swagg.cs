@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent( typeof(InRoom) )]
-public class Swagg: MonoBehaviour, IFacingMover
-{
+public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
+
     static private Swagg instance;
     static public IFacingMover IFM;
 
@@ -22,38 +22,48 @@ public class Swagg: MonoBehaviour, IFacingMover
     public float attackDelay = 0.5f;
     public float roomTransitionDelay = 0.5f;
     public int maxHealth = 10;
-    // public float knockbackSpeed = 10;
-    // public float knockbackDuration = 0.25f;
-    // public float invincibleDuration = 0.5f;
+    public float knockbackSpeed = 10;
+    public float knockbackDuration = 0.25f;
+    public float invincibleDuration = 0.5f;
+    public int maxWallet = 99;
 
     [Header("Dynamic")]
     public int currentInputDirection = -1;
     public int currentCharacterDirection = 1;
     public eMode mode = eMode.idle;
-    // public int numKeys = 0;
-    // public bool invincible = false;
-    // public bool hasGrappler = false;
+    public bool invincible = false;
+    public int healthFromPickup = 2;
+    public bool hasGrappler = false;
     // public Vector3 lastSafeLoc;
     // public int lastSafeFacing;
 
+    [SerializeField] [Range(0, 10)]
+    private int _health;
 
-    // [SerializeField]
-    // private int _health;
-    // public int health
-    // {
-    //     get { return _health; }
-    //     set { _health = value; }
-    // }
-    //
+    [SerializeField]
+    private int _lootKeys;
+
+    [SerializeField]
+    private int _dungeonkeys;
+
+    [SerializeField]
+    private bool _hasBossKey;
+
+    [SerializeField]
+    private int _wallet;
+
+    // Timers
     private float timeAtkDone = 0;
     private float timeAtkNext = 0;
     private float roomTransitionDone = 0;
     private Vector2 roomTransitionPosition;
-    // private float knockbackDone = 0;
-    // private float invincibleDone = 0;
-    // private Vector3 knockbackVel;
-    //
-    // private SpriteRenderer sRend;
+    private float knockbackDone = 0;
+    private float invincibleDone = 0;
+
+    // Effects
+    private Vector3 knockbackVel;
+
+    private SpriteRenderer sRend;
     private Rigidbody2D rigid;
     private Animator animator;
     private InRoom inRm;
@@ -67,29 +77,31 @@ public class Swagg: MonoBehaviour, IFacingMover
         KeyCode.D, KeyCode.W, KeyCode.A, KeyCode.S
     };
 
-    void Awake()
-    {
+    void Awake() {
+        instance = this;
         IFM = this;
-        // sRend = GetComponent<SpriteRenderer>();
+        sRend = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         inRm = GetComponent<InRoom>();
-        // health = maxHealth;
+        health = maxHealth;
+        // keys = userprefs.keys
     }
 
+    void Update() {
+        // Invincible
+        if (invincible && Time.time > invincibleDone) {
+            invincible = false;
+        }
+        sRend.color = invincible ? Color.red : Color.white;
 
-    void Update()
-    {
-        // // Invincible
-        // if (invincible && Time.time > invincibleDone) invincible = false;
-        // sRend.color = invincible ? Color.red : Color.white;
-        //
-        // // Knockback
-        // if (mode == eMode.knockback)
-        // {
-        //     rigid.velocity = knockbackVel;
-        //     if (Time.time < knockbackDone) return;
-        // }
+        // Knockback
+        if (mode == eMode.knockback) {
+            rigid.velocity = knockbackVel;
+            if (Time.time < knockbackDone) return;
+
+            mode = eMode.idle;
+        }
 
         // Room Transition
         if (mode == eMode.roomTransition) {
@@ -156,8 +168,6 @@ public class Swagg: MonoBehaviour, IFacingMover
         }
 
         rigid.velocity = vel * speed;
-
-
     }
 
     void LateUpdate() {
@@ -200,64 +210,64 @@ public class Swagg: MonoBehaviour, IFacingMover
             }
         }
     }
-    //
-    // void OnCollisionEnter(Collision coll)
-    // {
-    //     if (invincible) return;
-    //     DamageEffect dEf = coll.gameObject.GetComponent<DamageEffect>();
-    //     if (dEf == null) return;
-    //     health -= dEf.damage;
-    //     invincible = true;
-    //     invincibleDone = Time.time + invincibleDuration;
-    //     if (dEf.knockback)
-    //     {
-    //
-    //         Vector3 delta = transform.position - coll.transform.position;
-    //         if (Mathf.Abs(delta.x) >= Mathf.Abs(delta.y))
-    //         {
-    //
-    //             delta.x = (delta.x > 0) ? 1 : -1;
-    //             delta.y = 0;
-    //         }
-    //         else
-    //         {
-    //
-    //             delta.x = 0;
-    //             delta.y = (delta.y > 0) ? 1 : -1;
-    //         }
-    //
-    //         knockbackVel = delta * knockbackSpeed;
-    //         rigid.velocity = knockbackVel;
-    //
-    //         mode = eMode.knockback;
-    //         knockbackDone = Time.time + knockbackDuration;
-    //     }
-    // }
-    //
-    // void OnTriggerEnter(Collider colld)
-    // {
-    //     PickUp pup = colld.GetComponent<PickUp>();
-    //     if (pup == null) return;
-    //
-    //
-    //     switch (pup.itemType)
-    //     {
-    //         case PickUp.eType.health:
-    //             health = Mathf.Min(health + 2, maxHealth);
-    //             break;
-    //
-    //
-    //         case PickUp.eType.key:
-    //             keyCount++;
-    //             break;
-    //
-    //         case PickUp.eType.grappler:
-    //             hasGrappler = true;
-    //             break;
-    //     }
-    //     Destroy(colld.gameObject);
-    // }
-    //
+
+    void OnCollisionEnter2D(Collision2D collision) {
+
+        // Debug.Log("Swagg colided with " + collision.gameObject.name);
+
+        if (invincible) return;
+
+        DamageEffect damageEffect = collision.gameObject.GetComponent<DamageEffect>();
+        if (damageEffect == null) return;
+
+        health -= damageEffect.damage;
+        invincible = true;
+        invincibleDone = Time.time + invincibleDuration;
+
+        if (damageEffect.knockback) {
+
+            Vector3 delta = transform.position - collision.transform.position;
+            if (Mathf.Abs(delta.x) >= Mathf.Abs(delta.y)) {
+                delta.x = (delta.x > 0) ? 1 : -1;
+                delta.y = 0;
+            } else {
+                delta.x = 0;
+                delta.y = (delta.y > 0) ? 1 : -1;
+            }
+
+            knockbackVel = delta * knockbackSpeed;
+            rigid.velocity = knockbackVel;
+
+            mode = eMode.knockback;
+            knockbackDone = Time.time + knockbackDuration;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        PickUp pickup = collision.GetComponent<PickUp>();
+        if (pickup == null) return;
+
+        switch (pickup.itemType) {
+            case PickUp.eType.health:
+                health = Mathf.Min(health + 2, maxHealth);
+                break;
+            case PickUp.eType.money:
+                if (wallet < maxWallet) {
+                    _wallet++;
+                }
+                break;
+            case PickUp.eType.key:
+                _lootKeys++;
+                break;
+            case PickUp.eType.grappler:
+                hasGrappler = true;
+                break;
+        }
+
+        Destroy(collision.gameObject);
+    }
+
     // public void ResetInRoom(int healthLoss = 0)
     // {
     //     transform.position = lastSafeLoc;
@@ -267,6 +277,20 @@ public class Swagg: MonoBehaviour, IFacingMover
     //     invincibleDone = Time.time + invincibleDuration;
     // }
 
+    public int health {
+        get { return _health; }
+        set { _health = value; }
+    }
+    static public int HEALTH { get {return instance._health;} }
+
+    public int wallet {
+        get { return _wallet; }
+        set { _wallet = value; }
+    }
+
+    static public int WALLET { get {return instance._wallet;} }
+
+    // IFacingMover Implementation
     public int GetFacing(){
         return currentCharacterDirection;
     }
@@ -300,10 +324,27 @@ public class Swagg: MonoBehaviour, IFacingMover
     public Vector2 GetGridPosInRoom(float mult = -1) {
         return inRm.GetGridPosInRoom(mult);
     }
-    //
-    // public int keyCount
-    // {
-    //     get { return numKeys; }
-    //     set { numKeys = value; }
-    // }
+
+    // IKeyMaster
+    public int dungeonKeys {
+        get { return _dungeonkeys; }
+        set { _dungeonkeys = value; }
+    }
+    static public int DUNGEON_KEYS { get {return instance._dungeonkeys;} }
+
+    public int lootKeys {
+        get { return _lootKeys; }
+        set { _lootKeys = value; }
+    }
+    static public int LOOT_KEYS { get {return instance._lootKeys;} }
+
+    public bool hasBossKey {
+        get { return _hasBossKey; }
+    }
+    static public bool HAS_BOSS_KEY { get {return instance._hasBossKey;} }
+
+    public Vector2 position {
+        get { return (Vector2) transform.position; }
+    }
+
 }

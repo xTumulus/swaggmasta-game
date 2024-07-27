@@ -6,7 +6,9 @@ using UnityEngine;
 public interface IKeyMaster
 
 {
-    int keyCount { get; set; }
-
+    int dungeonKeys { get; set; }
+    int lootKeys { get; set; }
+    bool hasBossKey { get; }
+    Vector2 position { get; }
     int GetFacing();
 }
