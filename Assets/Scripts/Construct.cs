@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent( typeof(InRoom) )]
-public class Liz : Enemy, IFacingMover {
+public class Construct : Enemy, IFacingMover {
 
-    [Header("Inscribed: Liz")]
-    public int speed = 2;
+    [Header("Inscribed: Construct")]
+    public int speed = 5;
     public float timeThinkMin = 1f;
     public float timeThinkMax = 4f;
 
-    [Header("Dynamic: Liz")]
+    [Header("Dynamic: Construct")]
     [Range(0,4)]
     public int facing = 0;
     public float timeNextDecision = 0;
@@ -24,8 +24,7 @@ public class Liz : Enemy, IFacingMover {
 
     protected override void Update() {
 
-        base.Update();
-        if (knockback) return;
+        invincible = true;
 
         if (Time.time >= timeNextDecision) {
             DecideDirection();

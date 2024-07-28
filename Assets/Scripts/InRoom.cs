@@ -24,8 +24,7 @@ public class InRoom : MonoBehaviour
     public float gridMult = 1;
     public float radius = 0.5f;
 
-    void LateUpdate()
-    {
+    void LateUpdate() {
         if(!keepInRoom) return;
         if(isInRoom) return;
 
@@ -35,10 +34,8 @@ public class InRoom : MonoBehaviour
         posInRoom = posIR;
     }
 
-    public bool isInRoom
-    {
-        get
-        {
+    public bool isInRoom {
+        get {
             Vector2 posIR = posInRoom;
             if ( posIR.x < WALL + radius
                 || posIR.x > ROOM_W - WALL - radius

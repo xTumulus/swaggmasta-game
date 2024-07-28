@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 8695371764975003032}
   - component: {fileID: 5437741672421617382}
   - component: {fileID: 353197769491979681}
-  - component: {fileID: 8963948355771197117}
   - component: {fileID: 7536836257025645187}
   - component: {fileID: 1754299238038408676}
   - component: {fileID: 181444305229748285}
   - component: {fileID: 4175564923015939736}
+  - component: {fileID: 9005978976473366700}
   m_Layer: 7
-  m_Name: Liz
+  m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 19, y: 7, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -80,8 +80,8 @@ SpriteRenderer:
   m_SortingLayerID: 1810121777
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -318135151, guid: baa48ca16868c1d6faba53b206fbf4ae, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 1741207786, guid: baa48ca16868c1d6faba53b206fbf4ae, type: 3}
+  m_Color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,7 +101,7 @@ Animator:
   m_GameObject: {fileID: 6770984654191378055}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3236a3f8458c3a5bf9e26890efea149b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 53f2d1bca4aeb214bb4f1ab90e7b85b0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -139,36 +139,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8963948355771197117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6770984654191378055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ae5e0a8d0d3ada2487d4df5c8d6ca43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 2
-  knockbackSpeed: 10
-  knockbackDuration: 0.25
-  invincibleDuration: 0.5
-  randomItemDrops:
-  - {fileID: 4225375757917567533, guid: f5d5b6e03440e76caab8ee4239a26f53, type: 3}
-  - {fileID: 7806994693311412850, guid: 818e86a518a928037b35636773bad7cc, type: 3}
-  - {fileID: 0}
-  guaranteedItemDrop: {fileID: 0}
-  health: 2
-  invincible: 0
-  knockback: 0
-  stun: 0
-  speed: 2
-  timeThinkMin: 1
-  timeThinkMax: 4
-  facing: 0
-  timeNextDecision: 0
 --- !u!114 &7536836257025645187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,3 +215,30 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &9005978976473366700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6770984654191378055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 893a593d1916b8c059caa063b44a082c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 6
+  knockbackSpeed: 10
+  knockbackDuration: 0.25
+  invincibleDuration: 0.5
+  randomItemDrops: []
+  guaranteedItemDrop: {fileID: 0}
+  health: 6
+  invincible: 0
+  knockback: 0
+  stun: 0
+  speed: 2
+  timeThinkMin: 1
+  timeThinkMax: 4
+  facing: 0
+  timeNextDecision: 0

@@ -10,15 +10,15 @@ GameObject:
   m_Component:
   - component: {fileID: 8488419297419935176}
   - component: {fileID: 8695371764975003032}
-  - component: {fileID: 5437741672421617382}
   - component: {fileID: 353197769491979681}
-  - component: {fileID: 8963948355771197117}
   - component: {fileID: 7536836257025645187}
   - component: {fileID: 1754299238038408676}
   - component: {fileID: 181444305229748285}
-  - component: {fileID: 4175564923015939736}
+  - component: {fileID: 4636895012637567504}
+  - component: {fileID: 2918809947523404445}
+  - component: {fileID: 7287763186929546531}
   m_Layer: 7
-  m_Name: Liz
+  m_Name: Poe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6770984654191378055}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 19, y: 7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 1810121777
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -318135151, guid: baa48ca16868c1d6faba53b206fbf4ae, type: 3}
+  m_Sprite: {fileID: -27751307, guid: baa48ca16868c1d6faba53b206fbf4ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -91,27 +91,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &5437741672421617382
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6770984654191378055}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3236a3f8458c3a5bf9e26890efea149b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &353197769491979681
 Rigidbody2D:
   serializedVersion: 4
@@ -139,36 +118,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8963948355771197117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6770984654191378055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ae5e0a8d0d3ada2487d4df5c8d6ca43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 2
-  knockbackSpeed: 10
-  knockbackDuration: 0.25
-  invincibleDuration: 0.5
-  randomItemDrops:
-  - {fileID: 4225375757917567533, guid: f5d5b6e03440e76caab8ee4239a26f53, type: 3}
-  - {fileID: 7806994693311412850, guid: 818e86a518a928037b35636773bad7cc, type: 3}
-  - {fileID: 0}
-  guaranteedItemDrop: {fileID: 0}
-  health: 2
-  invincible: 0
-  knockback: 0
-  stun: 0
-  speed: 2
-  timeThinkMin: 1
-  timeThinkMax: 4
-  facing: 0
-  timeNextDecision: 0
 --- !u!114 &7536836257025645187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,8 +159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   knockback: 1
---- !u!58 &4175564923015939736
-CircleCollider2D:
+--- !u!61 &4636895012637567504
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -242,6 +191,67 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0000009536743, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 0.7655239, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &2918809947523404445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6770984654191378055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad64365e9c5ecf6aa849f7913e3cf8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
+  knockbackSpeed: 10
+  knockbackDuration: 0.25
+  invincibleDuration: 0.5
+  randomItemDrops:
+  - {fileID: 7806994693311412850, guid: 818e86a518a928037b35636773bad7cc, type: 3}
+  - {fileID: 7806994693311412850, guid: 818e86a518a928037b35636773bad7cc, type: 3}
+  - {fileID: 4225375757917567533, guid: f5d5b6e03440e76caab8ee4239a26f53, type: 3}
+  guaranteedItemDrop: {fileID: 0}
+  health: 2
+  invincible: 0
+  knockback: 0
+  stun: 0
+  speed: 6
+  timeThinkMin: 0.2
+  timeThinkMax: 0.8
+  facing: 0
+  timeNextDecision: 0
+--- !u!95 &7287763186929546531
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6770984654191378055}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 057fd07fd6d20b0e59da1d897c650c49, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

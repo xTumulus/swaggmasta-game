@@ -20,12 +20,13 @@ public class Enemy : MonoBehaviour {
     public float health;
     public bool invincible = false;
     public bool knockback = false;
+    public bool stun = false;
 
     // Timers
-    private float invincibleDone = 0;
-    private float knockbackDone = 0;
+    protected float invincibleDone = 0;
+    protected float knockbackDone = 0;
 
-    private Vector3 knockbackVel;
+    protected Vector3 knockbackVel;
 
     protected Animator anim;
     protected Rigidbody2D rigid;
@@ -54,7 +55,7 @@ public class Enemy : MonoBehaviour {
     }
 
 
-    void OnTriggerEnter2D(Collider2D collision) {
+    protected virtual void OnTriggerEnter2D(Collider2D collision) {
 
         // Debug.Log(gameObject.name + " collided with " + collision.gameObject.name);
 
@@ -101,7 +102,7 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    void Die() {
+    protected virtual void Die() {
 
         Debug.Log(gameObject.name + " is dead.");
 

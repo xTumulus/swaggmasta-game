@@ -250,7 +250,7 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
 
     void OnCollisionEnter2D(Collision2D collision) {
 
-        Debug.Log("Swagg colided with " + collision.gameObject.name);
+        // Debug.Log("Swagg colided with " + collision.gameObject.name);
         if (isControlled) return;
 
         if (invincible) return;

@@ -123,9 +123,9 @@ public class Grappler : MonoBehaviour, IGadget {
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-      Debug.Log("Grapple collided with " + collider.gameObject.name);
+      // Debug.Log("Grapple collided with " + collider.gameObject.name);
       string otherLayer = LayerMask.LayerToName(collider.gameObject.layer);
-      Debug.Log("Layer for object is " + otherLayer);
+      // Debug.Log("Layer for object is " + otherLayer);
 
       switch(otherLayer) {
         case "Items":

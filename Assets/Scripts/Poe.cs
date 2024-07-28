@@ -2,36 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent( typeof(InRoom) )]
-public class Liz : Enemy, IFacingMover {
+public class Poe : Enemy, IFacingMover {
+    [Header("Set in Inspector: Poe")]
+    [SerializeField] private int speed = 4;
+    [SerializeField] private float timeThinkMin = 0.6f;
+    [SerializeField] private float timeThinkMax = 1.3f;
 
-    [Header("Inscribed: Liz")]
-    public int speed = 2;
-    public float timeThinkMin = 1f;
-    public float timeThinkMax = 4f;
-
-    [Header("Dynamic: Liz")]
-    [Range(0,4)]
-    public int facing = 0;
-    public float timeNextDecision = 0;
+    [Header("Set Dynamically: Poe")]
+    [SerializeField] private int facing ;
+    [SerializeField] private float timeNextDecision;
 
     private InRoom inRm;
+    private const int MinSpeed = 0;
+    private const int MaxSpeed = 4;
 
-    protected override void Awake() {
+    protected override void Awake()
+    {
         base.Awake();
         inRm = GetComponent<InRoom>();
     }
 
-    protected override void Update() {
-
+    protected override void Update()
+    {
         base.Update();
         if (knockback) return;
+        if (stun) {
+            speed = MinSpeed;
+            rigid.velocity = directions[facing] * speed;
+            return;
+        }
+        else
+        {
+            speed = MaxSpeed;
+        }
 
-        if (Time.time >= timeNextDecision) {
+
+        if (Time.time >= timeNextDecision)
+        {
             DecideDirection();
         }
 
         rigid.velocity = directions[facing] * speed;
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D collision) {
+        string otherLayer = LayerMask.LayerToName(collision.gameObject.layer);
+        if (otherLayer != "Grappler") return;
+
+        base.OnTriggerEnter2D(collision);
     }
 
     void DecideDirection() {
@@ -39,8 +57,9 @@ public class Liz : Enemy, IFacingMover {
         timeNextDecision = Time.time + Random.Range(timeThinkMin, timeThinkMax);
     }
 
-    public int GetFacing(){
-        return facing % 4;
+    // IFacingMover
+    public int GetFacing() {
+        return facing;
     }
 
     public float GetSpeed() {
