@@ -56,6 +56,9 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
     [SerializeField]
     private int _wallet;
 
+    private Vector3 lastSafeLoc;
+    private int lastSafeFacing;
+
     // Timers
     private float timeAtkDone = 0;
     private float timeAtkNext = 0;
@@ -72,6 +75,7 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
     private Animator animator;
     private InRoom inRm;
     private Grappler grappler;
+    private Collider2D collider;
 
     private Vector2[] directions = new Vector2[] {
         Vector2.right, Vector2.up, Vector2.left, Vector2.down
@@ -92,10 +96,18 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
         health = maxHealth;
         grappler = GetComponentInChildren<Grappler>();
         if (startWithGrappler) currentGadget = grappler;
+        collider = GetComponent<Collider2D>();
         // TODO keys = userprefs.keys
     }
 
+    void Start() {
+        lastSafeLoc = transform.position;
+        lastSafeFacing = currentCharacterDirection;
+    }
+
     void Update() {
+        if (isControlled) return;
+
         // Invincible
         if (invincible && Time.time > invincibleDone) {
             invincible = false;
@@ -192,6 +204,8 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
 
     void LateUpdate() {
 
+        if (isControlled) return;
+
         Vector2 gridPosIR = GetGridPosInRoom(0.25f);
 
         int doorNum;
@@ -227,13 +241,17 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
                 posInRoom = roomTransitionPosition;
                 mode = eMode.roomTransition;
                 roomTransitionDone = Time.time + roomTransitionDelay;
+
+                lastSafeLoc = transform.position;
+                lastSafeFacing = currentCharacterDirection;
             }
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
 
-        // Debug.Log("Swagg colided with " + collision.gameObject.name);
+        Debug.Log("Swagg colided with " + collision.gameObject.name);
+        if (isControlled) return;
 
         if (invincible) return;
 
@@ -265,8 +283,12 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
+    void OnTriggerEnter2D(Collider2D collision) {
+
+        if (isControlled) return;
+        string otherLayer = LayerMask.LayerToName(collision.gameObject.layer);
+        if (otherLayer == "Default") return;
+
         PickUp pickup = collision.GetComponent<PickUp>();
         if (pickup == null) return;
 
@@ -290,14 +312,14 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
         Destroy(collision.gameObject);
     }
 
-    // public void ResetInRoom(int healthLoss = 0)
-    // {
-    //     transform.position = lastSafeLoc;
-    //     currentCharacterDirection = lastSafeFacing;
-    //     health -= healthLoss;
-    //     invincible = true;
-    //     invincibleDone = Time.time + invincibleDuration;
-    // }
+    public void ResetInRoom(int healthLoss = 0) {
+        transform.position = lastSafeLoc;
+        currentCharacterDirection = lastSafeFacing;
+        health -= healthLoss;
+
+        invincible = true;
+        invincibleDone = Time.time + invincibleDuration;
+    }
 
     public int health {
         get { return _health; }
@@ -378,8 +400,27 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
             Debug.LogError("non-current gadget called GadgetDone");
         }
 
+        controlledBy = null;
+        physicsEnabled = true;
         mode = eMode.idle;
         return true;
+    }
+
+    public IGadget controlledBy { get; set; }
+    public bool isControlled {
+        get { return (controlledBy != null); }
+    }
+
+    private bool _physicsEnabled = true;
+    public bool physicsEnabled {
+        get { return _physicsEnabled; }
+        set {
+            if (_physicsEnabled != value) {
+                _physicsEnabled = value;
+                collider.enabled = _physicsEnabled;
+                rigid.simulated = _physicsEnabled;
+            }
+        }
     }
     #endregion
 }

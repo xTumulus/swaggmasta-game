@@ -15,7 +15,8 @@ public class Grappler : MonoBehaviour, IGadget {
     [Header("Inscribed")]
     public float grappleSpd = 10;
     public float maxLength = 7.25f;
-    public float minLength = 0.375f;
+    public float minLength = 0.5f;
+    public int unsafeTileHealthPenalty = 2;
 
     [Header("Dynamic")] [SerializeField]
     private eMode _mode = eMode.gIdle;
@@ -56,6 +57,10 @@ public class Grappler : MonoBehaviour, IGadget {
         case eMode.gIdle:
           transform.DetachChildren();
           gameObject.SetActive(false);
+          if(swagg != null && swagg.controlledBy == this as IGadget) {
+            swagg.controlledBy = null;
+            swagg.physicsEnabled = true;
+          }
           break;
         case eMode.gOut:
           gameObject.SetActive(true);
@@ -66,6 +71,10 @@ public class Grappler : MonoBehaviour, IGadget {
           rigid.velocity = -directions[swaggDirection] * (grappleSpd * 2);
           break;
         case eMode.gPull:
+          p1 = transform.position;
+          rigid.velocity = Vector2.zero;
+          swagg.controlledBy = this;
+          swagg.physicsEnabled = false;
           break;
       }
 
@@ -88,6 +97,22 @@ public class Grappler : MonoBehaviour, IGadget {
           }
           break;
         case eMode.gPull:
+          if ((p1 - p0).magnitude > minLength) {
+            p0 += dirV3s[swaggDirection] * grappleSpd * Time.fixedDeltaTime;
+            swagg.transform.position = p0;
+            line.SetPosition(0, p0);
+            transform.position = p1;
+          } else {
+            p0 = p1 - (dirV3s[swaggDirection] * minLength);
+            swagg.transform.position = p0;
+            Vector2 checkPos = (Vector2) p0 + new Vector2(0, -0.25f);
+
+            // if (swaggLandedOnUnsafeTile) {
+            //   swagg.ResetInRoom(unsafeTileHealthPenalty);
+            // }
+
+            GrappleDone();
+          }
           break;
       }
     }
@@ -98,7 +123,9 @@ public class Grappler : MonoBehaviour, IGadget {
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
+      Debug.Log("Grapple collided with " + collider.gameObject.name);
       string otherLayer = LayerMask.LayerToName(collider.gameObject.layer);
+      Debug.Log("Layer for object is " + otherLayer);
 
       switch(otherLayer) {
         case "Items":

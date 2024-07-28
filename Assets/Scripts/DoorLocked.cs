@@ -12,6 +12,8 @@ public class DoorLocked : MonoBehaviour
     }
 
     private void CheckKeys(Collision2D collision) {
+
+        Debug.Log(gameObject.name + "collided with " + gameObject.name);
         IKeyMaster keyMaster = collision.gameObject.GetComponent<IKeyMaster>();
         if (keyMaster == null) return;
 
