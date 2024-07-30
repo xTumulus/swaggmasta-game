@@ -35,6 +35,9 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
     public bool invincible = false;
     public int healthFromPickup = 2;
     public bool hasGrappler = false;
+    public bool hasShield = false;
+    public bool hasHoodie = false;
+    public bool hasSword = false;
     public KeyCode keyAttack = KeyCode.Z;
     public KeyCode keyGadget = KeyCode.X;
 
@@ -309,8 +312,24 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
             case PickUp.eType.key:
                 _lootKeys++;
                 break;
+            case PickUp.eType.compass:
+                break;
+            case PickUp.eType.map:
+                break;
             case PickUp.eType.grappler:
                 hasGrappler = true;
+                currentGadget = grappler;
+                break;
+            case PickUp.eType.shield:
+                hasShield = true;
+                break;
+            case PickUp.eType.hoodie:
+                hasHoodie = true;
+                break;
+            case PickUp.eType.sword:
+                hasSword = true;
+                break;
+            case PickUp.eType.bow:
                 break;
         }
 

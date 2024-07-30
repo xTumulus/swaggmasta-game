@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PickUp : MonoBehaviour {
-    public enum eType { health, money, moneyBig, key, compass, map, grappler, bow, sword, hoodie, shield }
+    public enum eType { health, money, moneyBig, key, compass, map, grappler, sword, hoodie, shield, bow }
     public static float COLLIDER_DELAY = 0.5f;
 
     [Header("Inscribed")]

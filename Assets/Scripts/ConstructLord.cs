@@ -52,6 +52,12 @@ public class ConstructLord : Enemy, IFacingMover {
             }
         }
 
+        GameObject parent = transform.parent.gameObject;
+        if (parent.name != "ConstructGroup") {
+            Debug.Log("Construct Lord must be part of a Construct Group");
+            return;
+        }
+
         Destroy(transform.parent.gameObject);
     }
 
