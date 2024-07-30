@@ -38,9 +38,11 @@ public class ConstructLord : Enemy, IFacingMover {
         Debug.Log(gameObject.name + " is dead.");
 
         GameObject go;
-        if (guaranteedItemDrop != null) {
-            go = Instantiate<GameObject>(guaranteedItemDrop);
-            go.transform.position = transform.position;
+        if (guaranteedItemDrop != null && guaranteedItemDrop.Length != 0) {
+            for (int i = 0; i < guaranteedItemDrop.Length; i++) {
+                go = Instantiate<GameObject>(guaranteedItemDrop[i]);
+                go.transform.position = new Vector3(transform.position.x + i, transform.position.y, transform.position.z);
+            }
         } else if (randomItemDrops.Length > 0) {
             int n = Random.Range(0, randomItemDrops.Length);
             GameObject prefab = randomItemDrops[n];

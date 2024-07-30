@@ -17,7 +17,7 @@ TagManager:
   - Items
   - Grappler
   - GrapTiles
-  - 
+  - Room
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: Items
     uniqueID: 1592236151
+    locked: 0
+  - name: Room
+    uniqueID: 2038525827
     locked: 0

@@ -3,28 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent( typeof(InRoom) )]
-public class Knight : Enemy, IFacingMover {
+public class Hinox : Enemy, IFacingMover {
 
-    [Header("Inscribed: Knight")]
+    [Header("Inscribed: Hinox")]
     public int speed = 2;
     public float timeThinkMin = 1f;
     public float timeThinkMax = 4f;
+    public float damageColliderExpansion = 0.25f;
 
-    [Header("Dynamic: Knight")]
+    [Header("Dynamic: Hinox")]
     [Range(0,4)]
     public int facing = 0;
     public float timeNextDecision = 0;
 
     private InRoom inRm;
-    private Animator animator;
+    private DamageEffect damageEffect;
+    private BoxCollider2D damageCollider;
 
     protected override void Awake() {
         base.Awake();
         inRm = GetComponent<InRoom>();
-        animator = GetComponent<Animator>();
+        damageEffect = GetComponent<DamageEffect>();
+        damageCollider = GetComponent<BoxCollider2D>();
     }
 
     protected override void Update() {
+
         base.Update();
         if (knockback) return;
 
@@ -36,19 +40,10 @@ public class Knight : Enemy, IFacingMover {
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log("Knight hit by " + collision.gameObject.name);
 
         // Can't be damaged by the grappler
         string otherLayer = LayerMask.LayerToName(collision.gameObject.layer);
-        Debug.Log("Other object is on layer: " + otherLayer);
-        // Can't be damaged if facing swagg
-        IFacingMover swaggFacingMover = collision.GetComponentInParent<IFacingMover>();
-        // Debug.Log("Swagg is facing " + swaggFacingMover.GetFacing());
-        // Debug.Log("Knight is facing " + facing);
-        int oppositeSwaggFacing = (swaggFacingMover.GetFacing() + 2) % 4;
-
-        if (otherLayer == "Grappler" || facing == oppositeSwaggFacing) {
-            Debug.Log("Knight can't take damage on shield or from grappler");
+        if (otherLayer == "Grappler") {
             return;
         }
 
@@ -64,38 +59,23 @@ public class Knight : Enemy, IFacingMover {
         invincibleDone = Time.time + invincibleDuration;
 
         if (damageEffect.knockback) {
-            // Debug.Log("takes knockback");
-            Vector2 delta;
-
-            if (swaggFacingMover != null) {
-                // Debug.Log("move away from Swagg");
-                delta = directions[swaggFacingMover.GetFacing()];
-            } else {
-                // Debug.Log("move away from damage");
-                delta = transform.position - collision.transform.root.position;
-                if (Mathf.Abs(delta.x) >= Mathf.Abs(delta.y)) {
-                    delta.x = (delta.x > 0) ? 1 : -1;
-                    delta.y = 0;
-                } else {
-                    delta.x = 0;
-                    delta.y = (delta.y > 0) ? 1 : -1;
-                }
-            }
-
-            knockbackVel = delta * knockbackSpeed;
-            rigid.velocity = knockbackVel;
-
-            knockback = true;
-            knockbackDone = Time.time + knockbackDuration;
-            anim.speed = 0;
+            // Debug.Log("Hinox doesn't take knockback");
         }
     }
 
     void DecideDirection() {
         facing = Random.Range(0, 4);
-        animator.Play("Knight_Walk_" + facing);
-        animator.speed = 1;
         timeNextDecision = Time.time + Random.Range(timeThinkMin, timeThinkMax);
+    }
+
+    public void Slam(int doSlam) {
+        if (doSlam == 1) {
+            damageEffect.SetDamage(6);
+            damageCollider.size = new Vector2(damageCollider.size.x + damageColliderExpansion, damageCollider.size.y + damageColliderExpansion);
+        } else {
+            damageEffect.SetDamage(2);
+            damageCollider.size = new Vector2(damageCollider.size.x + damageColliderExpansion, damageCollider.size.y + damageColliderExpansion);
+        }
     }
 
     public int GetFacing(){

@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca53cb6672dd01e6b0e9180d15891ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
   knockback: 1
 --- !u!58 &4175564923015939736
 CircleCollider2D:
@@ -227,12 +227,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 893a593d1916b8c059caa063b44a082c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 6
+  maxHealth: 4
   knockbackSpeed: 10
   knockbackDuration: 0.25
   invincibleDuration: 0.5
-  randomItemDrops: []
-  guaranteedItemDrop: {fileID: 0}
+  randomItemDrops:
+  - {fileID: 4225375757917567533, guid: f5d5b6e03440e76caab8ee4239a26f53, type: 3}
+  - {fileID: 4225375757917567533, guid: f5d5b6e03440e76caab8ee4239a26f53, type: 3}
+  - {fileID: 7806994693311412850, guid: 818e86a518a928037b35636773bad7cc, type: 3}
+  - {fileID: 7806994693311412850, guid: 17c1dbfe9e3ac28f48026313c89cbf43, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  guaranteedItemDrop: []
   health: 6
   invincible: 0
   knockback: 0

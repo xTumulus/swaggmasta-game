@@ -224,7 +224,7 @@ MonoBehaviour:
   - {fileID: 7806994693311412850, guid: 818e86a518a928037b35636773bad7cc, type: 3}
   - {fileID: 7806994693311412850, guid: 818e86a518a928037b35636773bad7cc, type: 3}
   - {fileID: 4225375757917567533, guid: f5d5b6e03440e76caab8ee4239a26f53, type: 3}
-  guaranteedItemDrop: {fileID: 0}
+  guaranteedItemDrop: []
   health: 2
   invincible: 0
   knockback: 0

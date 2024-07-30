@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 8695371764975003032}
   - component: {fileID: 5437741672421617382}
   - component: {fileID: 353197769491979681}
-  - component: {fileID: 8963948355771197117}
   - component: {fileID: 7536836257025645187}
   - component: {fileID: 1754299238038408676}
   - component: {fileID: 181444305229748285}
-  - component: {fileID: 4175564923015939736}
+  - component: {fileID: 8815981970767480872}
+  - component: {fileID: 3064561715889455171}
   m_Layer: 7
-  m_Name: Liz
+  m_Name: Hinox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 1810121777
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -318135151, guid: baa48ca16868c1d6faba53b206fbf4ae, type: 3}
+  m_Sprite: {fileID: 1022224388, guid: 306b1fb281ca3ca6587655de382bf2cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,7 +101,7 @@ Animator:
   m_GameObject: {fileID: 6770984654191378055}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3236a3f8458c3a5bf9e26890efea149b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9a1976893127cfae8a718c42a74c83eb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -139,36 +139,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8963948355771197117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6770984654191378055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ae5e0a8d0d3ada2487d4df5c8d6ca43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 2
-  knockbackSpeed: 10
-  knockbackDuration: 0.25
-  invincibleDuration: 0.5
-  randomItemDrops:
-  - {fileID: 4225375757917567533, guid: f5d5b6e03440e76caab8ee4239a26f53, type: 3}
-  - {fileID: 7806994693311412850, guid: 818e86a518a928037b35636773bad7cc, type: 3}
-  - {fileID: 0}
-  guaranteedItemDrop: []
-  health: 2
-  invincible: 0
-  knockback: 0
-  stun: 0
-  speed: 2
-  timeThinkMin: 1
-  timeThinkMax: 4
-  facing: 0
-  timeNextDecision: 0
 --- !u!114 &7536836257025645187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,10 +178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca53cb6672dd01e6b0e9180d15891ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
   knockback: 1
---- !u!58 &4175564923015939736
-CircleCollider2D:
+--- !u!61 &8815981970767480872
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -243,5 +213,46 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &3064561715889455171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6770984654191378055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d64e1c6f88c198d1ab8e30a45b3a7c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  knockbackSpeed: 10
+  knockbackDuration: 0.25
+  invincibleDuration: 0.5
+  randomItemDrops: []
+  guaranteedItemDrop:
+  - {fileID: 7806994693311412850, guid: 17c1dbfe9e3ac28f48026313c89cbf43, type: 3}
+  - {fileID: 7806994693311412850, guid: 17c1dbfe9e3ac28f48026313c89cbf43, type: 3}
+  - {fileID: 7806994693311412850, guid: 17c1dbfe9e3ac28f48026313c89cbf43, type: 3}
+  - {fileID: 7806994693311412850, guid: 17c1dbfe9e3ac28f48026313c89cbf43, type: 3}
+  health: 10
+  invincible: 0
+  knockback: 0
+  stun: 0
+  speed: 2
+  timeThinkMin: 1
+  timeThinkMax: 4
+  facing: 0
+  timeNextDecision: 0

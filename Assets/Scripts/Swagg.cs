@@ -194,7 +194,7 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
                 animator.speed = 1;
                 break;
             case eMode.gadget:
-                animator.Play("Dray_Attack_" + currentCharacterDirection);
+                animator.Play("Swagg_Attack_" + currentCharacterDirection);
                 animator.speed = 0;
                 break;
         }
@@ -299,6 +299,11 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
             case PickUp.eType.money:
                 if (wallet < maxWallet) {
                     _wallet++;
+                }
+                break;
+            case PickUp.eType.moneyBig:
+                if (wallet < maxWallet) {
+                    _wallet += 5;
                 }
                 break;
             case PickUp.eType.key:
