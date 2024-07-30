@@ -22,7 +22,7 @@ public class PushBlock : MonoBehaviour {
 
     public void OnCollisionEnter2D(Collision2D collision) {
 
-        Debug.Log(collision.gameObject.name + " collided with " + gameObject.name);
+        // Debug.Log(collision.gameObject.name + " collided with " + gameObject.name);
 
         // Only player can move block
         string otherLayer = LayerMask.LayerToName(collision.gameObject.layer);
@@ -34,7 +34,7 @@ public class PushBlock : MonoBehaviour {
         if (collisionMover == null) return;
 
         int pusherFacing = collisionMover.GetFacing();
-        Debug.Log(collision.gameObject.name + " facing " + pusherFacing);
+        // Debug.Log(collision.gameObject.name + " facing " + pusherFacing);
         if (allowedFacings.Contains(collisionMover.GetFacing())) {
             int xMovement = 0;
             int yMovement = 0;

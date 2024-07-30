@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1201467654379307330}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 38.5, y: 27.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -100,7 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movesLimit: 1
   allowedFacings: 01000000
+  correctPosition: {x: 0, y: 0, z: 0}
   totalMoves: 0
+  inPlace: 0
 --- !u!61 &1159710083015734936
 BoxCollider2D:
   m_ObjectHideFlags: 0
