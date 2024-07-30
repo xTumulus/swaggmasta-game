@@ -41,21 +41,23 @@ public class Knight : Enemy, IFacingMover {
         // Can't be damaged by the grappler
         string otherLayer = LayerMask.LayerToName(collision.gameObject.layer);
         Debug.Log("Other object is on layer: " + otherLayer);
-        // Can't be damaged if facing swagg
+        if (otherLayer == "Grappler") {
+            Debug.Log("Knight can't take damage on shield or from grappler");
+            return;
+        }
+
+        // Can't be damaged on his shield
         IFacingMover swaggFacingMover = collision.GetComponentInParent<IFacingMover>();
-        // Debug.Log("Swagg is facing " + swaggFacingMover.GetFacing());
-        // Debug.Log("Knight is facing " + facing);
         int oppositeSwaggFacing = (swaggFacingMover.GetFacing() + 2) % 4;
 
         if (otherLayer == "Grappler" || facing == oppositeSwaggFacing) {
-            Debug.Log("Knight can't take damage on shield or from grappler");
             return;
         }
 
         DamageEffect damageEffect = collision.gameObject.GetComponent<DamageEffect>();
         if (damageEffect == null) return;
 
-        // Debug.Log("takes " + damageEffect.damage + " damage");
+        Debug.Log("takes " + damageEffect.damage + " damage");
         health -= damageEffect.damage;
         // Debug.Log(" health: " + health);
         if (health <= 0) Die();

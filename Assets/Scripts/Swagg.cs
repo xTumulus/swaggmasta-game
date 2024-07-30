@@ -27,6 +27,7 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
     public float knockbackDuration = 0.25f;
     public float invincibleDuration = 0.5f;
     public int maxWallet = 99;
+    public PlayerGUI gui;
 
     [Header("Dynamic")]
     public int currentInputDirection = -1;
@@ -34,15 +35,12 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
     public eMode mode = eMode.idle;
     public bool invincible = false;
     public int healthFromPickup = 2;
-    public bool hasGrappler = false;
-    public bool hasShield = false;
-    public bool hasHoodie = false;
-    public bool hasSword = false;
     public KeyCode keyAttack = KeyCode.Z;
     public KeyCode keyGadget = KeyCode.X;
+    public KeyCode keyBow = KeyCode.C;
 
     [SerializeField]
-    private bool startWithGrappler = true;
+    private bool startWithGrappler = false;
 
     [SerializeField] [Range(0, 10)]
     private int _health;
@@ -54,10 +52,28 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
     private int _dungeonkeys;
 
     [SerializeField]
+    private int _wallet;
+
+    [SerializeField]
+    private bool _hasCompass;
+
+    [SerializeField]
+    private bool _hasMap;
+
+    [SerializeField]
     private bool _hasBossKey;
 
     [SerializeField]
-    private int _wallet;
+    private bool _hasHoodie;
+
+    [SerializeField]
+    private bool _hasSword;
+
+    [SerializeField]
+    private bool _hasGrappler;
+
+    [SerializeField]
+    private bool _hasBow;
 
     private Vector3 lastSafeLoc;
     private int lastSafeFacing;
@@ -78,6 +94,7 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
     private Animator animator;
     private InRoom inRm;
     private Grappler grappler;
+    private Bow bow;
     private Collider2D collider;
 
     private Vector2[] directions = new Vector2[] {
@@ -95,8 +112,11 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
         sRend = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        inRm = GetComponent<InRoom>();
+
         health = maxHealth;
+
+        inRm = GetComponent<InRoom>();
+        bow = GetComponentInChildren<Bow>();
         grappler = GetComponentInChildren<Grappler>();
         if (startWithGrappler) currentGadget = grappler;
         collider = GetComponent<Collider2D>();
@@ -175,6 +195,10 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
                 mode = eMode.attack;
                 timeAtkDone = Time.time + attackDuration;
                 timeAtkNext = Time.time + attackDelay;
+            }
+
+            if (Input.GetKeyDown(keyBow) && hasBow) {
+                bow.ShootProj();
             }
         }
 
@@ -256,12 +280,18 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
         // Debug.Log("Swagg colided with " + collision.gameObject.name);
         if (isControlled) return;
 
+        // Debug.Log("Swagg is not controlled");
+
         if (invincible) return;
+
+        // Debug.Log("Swagg is not invincible");
 
         DamageEffect damageEffect = collision.gameObject.GetComponent<DamageEffect>();
         if (damageEffect == null) return;
+        // Debug.Log ("Damage Effect for collision is not null");
 
         health -= damageEffect.damage;
+        // Debug.Log("Swagg took damage: " + damageEffect.damage);
         invincible = true;
         invincibleDone = Time.time + invincibleDuration;
 
@@ -295,45 +325,46 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
         PickUp pickup = collision.GetComponent<PickUp>();
         if (pickup == null) return;
 
+        if (_wallet < pickup.cost) return;
+        _wallet -= pickup.cost;
+
         switch (pickup.itemType) {
             case PickUp.eType.health:
                 health = Mathf.Min(health + 2, maxHealth);
                 break;
             case PickUp.eType.money:
-                if (wallet < maxWallet) {
-                    _wallet++;
-                }
+                if (wallet < maxWallet) _wallet++;
                 break;
             case PickUp.eType.moneyBig:
-                if (wallet < maxWallet) {
-                    _wallet += 5;
-                }
+                if (wallet < maxWallet) _wallet += 5;
                 break;
             case PickUp.eType.key:
                 _lootKeys++;
                 break;
             case PickUp.eType.compass:
+                _hasCompass = true;
                 break;
             case PickUp.eType.map:
+                _hasMap = true;
                 break;
             case PickUp.eType.grappler:
-                hasGrappler = true;
+                _hasGrappler = true;
                 currentGadget = grappler;
                 break;
-            case PickUp.eType.shield:
-                hasShield = true;
-                break;
             case PickUp.eType.hoodie:
-                hasHoodie = true;
+                _hasHoodie = true;
                 break;
             case PickUp.eType.sword:
-                hasSword = true;
+                _hasSword = true;
                 break;
             case PickUp.eType.bow:
+                _hasBow = true;
                 break;
         }
 
         Destroy(collision.gameObject);
+        gui.RefreshGUI();
+
     }
 
     public void ResetInRoom(int healthLoss = 0) {
@@ -405,15 +436,44 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
     }
     static public int LOOT_KEYS { get {return instance._lootKeys;} }
 
+    public bool hasCompass {
+        get { return _hasCompass; }
+    }
+    static public bool HAS_COMPASS { get {return instance._hasCompass;} }
+
+    public bool hasMap {
+        get { return _hasMap; }
+    }
+    static public bool HAS_MAP { get {return instance._hasMap;} }
+
     public bool hasBossKey {
         get { return _hasBossKey; }
     }
     static public bool HAS_BOSS_KEY { get {return instance._hasBossKey;} }
 
+    public bool hasHoodie {
+        get { return _hasHoodie; }
+    }
+    static public bool HAS_TUNIC { get {return instance._hasHoodie;} }
+
+    public bool hasSword {
+        get { return _hasSword; }
+    }
+    static public bool HAS_SWORD { get {return instance._hasSword;} }
+
+    public bool hasGrappler {
+        get { return _hasGrappler; }
+    }
+    static public bool HAS_GRAPPLER { get {return instance._hasGrappler;} }
+
+    public bool hasBow {
+        get { return _hasBow; }
+    }
+    static public bool HAS_BOW { get {return instance._hasBow;} }
+
     public Vector2 position {
         get { return (Vector2) transform.position; }
     }
-
 
     // IGadget
     #region IGadget_Affordances

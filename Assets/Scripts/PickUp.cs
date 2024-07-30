@@ -8,6 +8,7 @@ public class PickUp : MonoBehaviour {
 
     [Header("Inscribed")]
     public eType itemType;
+    public int cost = 0;
 
     // Awake() and Activate() disable the PickUp's Collider for 0.5 secs
     void Awake() {
