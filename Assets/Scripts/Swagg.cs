@@ -121,7 +121,17 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
         grappler = GetComponentInChildren<Grappler>();
         if (startWithGrappler) currentGadget = grappler;
         collider = GetComponent<Collider2D>();
-        // TODO keys = userprefs.keys
+
+        int totalKeys = 0;
+        if (PlayerPrefs.GetInt("hasLink") == 1) totalKeys++;
+        if (PlayerPrefs.GetInt("hasBen") == 1) totalKeys++;
+        if (PlayerPrefs.GetInt("hasError") == 1) totalKeys++;
+        if (PlayerPrefs.GetInt("hasBow") == 1) totalKeys++;
+        if (PlayerPrefs.GetInt("hasKey") == 1) totalKeys++;
+        if (PlayerPrefs.GetInt("hasSwagg") == 1) totalKeys++;
+        if (PlayerPrefs.GetInt("hasRuto") == 1) totalKeys++;
+
+        if (PlayerPrefs.GetInt("hasMoon") == 1) _hasBossKey = true;
     }
 
     void Start() {

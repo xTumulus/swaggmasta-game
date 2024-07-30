@@ -95894,16 +95894,16 @@ MonoBehaviour:
   keyBow: 99
   startWithGrappler: 0
   _health: 10
-  _lootKeys: 4
-  _dungeonkeys: 10
-  _wallet: 100
-  _hasCompass: 1
-  _hasMap: 1
-  _hasBossKey: 1
-  _hasHoodie: 1
-  _hasSword: 1
-  _hasGrappler: 1
-  _hasBow: 1
+  _lootKeys: 0
+  _dungeonkeys: 0
+  _wallet: 0
+  _hasCompass: 0
+  _hasMap: 0
+  _hasBossKey: 0
+  _hasHoodie: 0
+  _hasSword: 0
+  _hasGrappler: 0
+  _hasBow: 0
 --- !u!58 &1129748964
 CircleCollider2D:
   m_ObjectHideFlags: 0
