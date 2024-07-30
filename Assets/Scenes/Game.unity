@@ -95895,7 +95895,7 @@ MonoBehaviour:
   startWithGrappler: 0
   _health: 10
   _lootKeys: 0
-  _dungeonkeys: 0
+  _dungeonkeys: 10
   _wallet: 0
   _hasCompass: 0
   _hasMap: 0

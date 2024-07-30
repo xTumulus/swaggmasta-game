@@ -30,7 +30,6 @@ public class PlayerGUI : MonoBehaviour
     Image bowIcon;
 
     void Start() {
-
         PullElementReferences();
         InitialHealthSetup();
         RefreshGUI();
@@ -95,6 +94,8 @@ public class PlayerGUI : MonoBehaviour
 
     private void InitialHealthSetup() {
 
+        Debug.Log("Initializing Full Health");
+
         Transform tempTransform;
 
         Transform healthPanel = transform.Find("Health");
@@ -121,5 +122,21 @@ public class PlayerGUI : MonoBehaviour
         if (Swagg.HAS_SWORD) { swordIcon.GetComponent<Image>().sprite = sword; }
         if (Swagg.HAS_GRAPPLER) { grapplerIcon.GetComponent<Image>().sprite = grappler; }
         if (Swagg.HAS_BOW) { bowIcon.GetComponent<Image>().sprite = bow; }
+    }
+
+    void Update() {
+
+        int health = Swagg.HEALTH;
+        for (int i = 0; i < healthImages.Count; i++) {
+            if (health > 1) {
+                healthImages[i].sprite = healthFull;
+            } else if (health == 1) {
+                healthImages[i].sprite = healthHalf;
+            } else {
+                healthImages[i].sprite = healthEmpty;
+            }
+
+            health -= 2;
+        }
     }
 }

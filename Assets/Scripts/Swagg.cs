@@ -50,7 +50,7 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
     private int _lootKeys;
 
     [SerializeField]
-    private int _dungeonkeys;
+    private int _dungeonKeys;
 
     [SerializeField]
     private int _wallet;
@@ -130,6 +130,8 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
         if (PlayerPrefs.GetInt("hasKey") == 1) totalKeys++;
         if (PlayerPrefs.GetInt("hasSwagg") == 1) totalKeys++;
         if (PlayerPrefs.GetInt("hasRuto") == 1) totalKeys++;
+
+        _dungeonKeys = totalKeys;
 
         if (PlayerPrefs.GetInt("hasMoon") == 1) _hasBossKey = true;
     }
@@ -441,10 +443,10 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
 
     // IKeyMaster
     public int dungeonKeys {
-        get { return _dungeonkeys; }
-        set { _dungeonkeys = value; }
+        get { return _dungeonKeys; }
+        set { _dungeonKeys = value; }
     }
-    static public int DUNGEON_KEYS { get {return instance._dungeonkeys;} }
+    static public int DUNGEON_KEYS { get {return instance._dungeonKeys;} }
 
     public int lootKeys {
         get { return _lootKeys; }
