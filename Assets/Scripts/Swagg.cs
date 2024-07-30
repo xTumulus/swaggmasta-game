@@ -28,6 +28,7 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
     public float invincibleDuration = 0.5f;
     public int maxWallet = 99;
     public PlayerGUI gui;
+    public GameObject sword;
 
     [Header("Dynamic")]
     public int currentInputDirection = -1;
@@ -289,8 +290,12 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
         DamageEffect damageEffect = collision.gameObject.GetComponent<DamageEffect>();
         if (damageEffect == null) return;
         // Debug.Log ("Damage Effect for collision is not null");
+        if (_hasHoodie) {
+            health -= (damageEffect.damage/2);
+        } else {
+            health -= damageEffect.damage;
+        }
 
-        health -= damageEffect.damage;
         // Debug.Log("Swagg took damage: " + damageEffect.damage);
         invincible = true;
         invincibleDone = Time.time + invincibleDuration;
@@ -355,6 +360,7 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
                 _hasHoodie = true;
                 break;
             case PickUp.eType.sword:
+                sword.gameObject.GetComponentInChildren<DamageEffect>().damage += 1;
                 _hasSword = true;
                 break;
             case PickUp.eType.bow:

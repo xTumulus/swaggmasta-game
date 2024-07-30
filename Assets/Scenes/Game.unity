@@ -1773,7 +1773,7 @@ PrefabInstance:
     - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: enemies.Array.data[0]
       value: 
-      objectReference: {fileID: 8379255811405334122, guid: a75124745777900ce88086180a1c0223, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7279041078937287770, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: m_Offset.x
       value: 8
@@ -94814,7 +94814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: respawnEnemies
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: enemies.Array.size
@@ -94994,7 +94994,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: respawnEnemies
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: enemies.Array.size
@@ -95301,7 +95301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: respawnEnemies
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: enemies.Array.size
@@ -95883,6 +95883,7 @@ MonoBehaviour:
   invincibleDuration: 0.5
   maxWallet: 99
   gui: {fileID: 1224187131}
+  sword: {fileID: 1135362102}
   currentInputDirection: -1
   currentCharacterDirection: 1
   mode: 0
@@ -129100,7 +129101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: respawnEnemies
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: enemies.Array.size
@@ -129561,6 +129562,10 @@ PrefabInstance:
     - target: {fileID: 2732657381952925581, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: m_Name
       value: Room30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
+      propertyPath: respawnEnemies
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: enemies.Array.size
