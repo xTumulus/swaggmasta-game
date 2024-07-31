@@ -41,6 +41,7 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
     public KeyCode keyAttack = KeyCode.Z;
     public KeyCode keyGadget = KeyCode.X;
     public KeyCode keyBow = KeyCode.C;
+    public KeyCode keyMenu = KeyCode.M;
 
     [SerializeField]
     private bool startWithGrappler = false;
@@ -144,6 +145,9 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
     }
 
     void Update() {
+
+        if (Input.GetKeyDown(keyMenu)) navManager.ReturnToMenu();
+
         if (isControlled) return;
 
         // Invincible

@@ -2862,7 +2862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 429458329}
   m_Layer: 5
-  m_Name: PanelMap
+  m_Name: PanelLegend
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133231,7 +133231,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Z to Attack
 
-    Arrow Keys to Move'
+    Arrow Keys to Move
+
+    M to exit to menu'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
