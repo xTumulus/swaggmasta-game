@@ -11,6 +11,8 @@ public class KeyChecker : MonoBehaviour {
     public TMP_Text resultText;
 
     public void CheckKey() {
+
+        resultText.text = "";
         Debug.Log(inputText.text);
 
         bool success = false;

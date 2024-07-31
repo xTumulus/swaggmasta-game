@@ -11,7 +11,9 @@ public class Room : MonoBehaviour {
     public float maxRoomX = 16f;
     public float maxRoomY = 11f;
     public float wallThinkness = 2f;
+    public float respawnTime = 20;
 
+    private float nextRespawn;
     private bool spawnedOnce = false;
 
     protected void OnCollisionEnter2D(Collision2D collision) {
@@ -25,7 +27,8 @@ public class Room : MonoBehaviour {
         if (overlayText != null) {
             overlayText.SetActive(true);
         }
-        if (respawnEnemies) {
+        if (respawnEnemies && nextRespawn < Time.time) {
+            DestroyEnemies();
             SpawnEnemies();
         } else if (!spawnedOnce) {
             SpawnEnemies();
@@ -36,20 +39,24 @@ public class Room : MonoBehaviour {
     protected void OnTriggerExit2D(Collider2D collider) {
 
         Debug.Log(collider.gameObject.name + " left " + gameObject.name);
-
         if (respawnEnemies) {
-            Debug.Log("Destroying all enemies in " + gameObject.name);
-            foreach(Transform child in this.transform) {
-                GameObject go = child.gameObject;
-                string childLayer = LayerMask.LayerToName(go.layer);
-                if (childLayer == "Enemies") {
-                    Destroy(child.gameObject);
-                }
-            }
-        }
+            nextRespawn = Time.time + respawnTime;
 
+        }
         if (overlayText != null) {
             overlayText.SetActive(false);
+        }
+    }
+
+    private void DestroyEnemies() {
+
+        Debug.Log("Destroying all enemies in " + gameObject.name);
+        foreach(Transform child in this.transform) {
+            GameObject go = child.gameObject;
+            string childLayer = LayerMask.LayerToName(go.layer);
+            if (childLayer == "Enemies") {
+                Destroy(child.gameObject);
+            }
         }
     }
 

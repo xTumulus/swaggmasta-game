@@ -29,6 +29,8 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
     public int maxWallet = 99;
     public PlayerGUI gui;
     public GameObject sword;
+    public NavManager navManager ;
+    public RuntimeAnimatorController swaggP_Animator;
 
     [Header("Dynamic")]
     public int currentInputDirection = -1;
@@ -218,6 +220,13 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
         // Act on Current Mode
         Vector2 vel = Vector2.zero;
 
+        // string attackAnimName = "Swagg_Attack_";
+        // string walkAnimName = "Swagg_Walk_";
+        // if (_hasHoodie) {
+        //     attackAnimName = "SwaggP_Attack_";
+        //     walkAnimName = "SwaggP_Attack_";
+        // }
+
         switch (mode)
         {
             case eMode.attack:
@@ -308,6 +317,10 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
             health -= damageEffect.damage;
         }
 
+        if (health <= 0) {
+            navManager.GameOver();
+        }
+
         // Debug.Log("Swagg took damage: " + damageEffect.damage);
         invincible = true;
         invincibleDone = Time.time + invincibleDuration;
@@ -348,39 +361,51 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
         switch (pickup.itemType) {
             case PickUp.eType.health:
                 health = Mathf.Min(health + 2, maxHealth);
+                Destroy(collision.gameObject);
                 break;
             case PickUp.eType.money:
                 if (wallet < maxWallet) _wallet++;
+                Destroy(collision.gameObject);
                 break;
             case PickUp.eType.moneyBig:
                 if (wallet < maxWallet) _wallet += 5;
+                Destroy(collision.gameObject);
                 break;
             case PickUp.eType.key:
                 _lootKeys++;
+                collision.gameObject.SetActive(false);
                 break;
             case PickUp.eType.compass:
                 _hasCompass = true;
+                collision.gameObject.SetActive(false);
                 break;
             case PickUp.eType.map:
                 _hasMap = true;
+                collision.gameObject.SetActive(false);
                 break;
             case PickUp.eType.grappler:
                 _hasGrappler = true;
                 currentGadget = grappler;
+                collision.gameObject.SetActive(false);
                 break;
             case PickUp.eType.hoodie:
+                // GetComponent<Animator>().runtimeAnimatorController = swaggP_Animator;
+                // animator = swaggP_Animator;
+                gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
                 _hasHoodie = true;
+                collision.gameObject.SetActive(false);
                 break;
             case PickUp.eType.sword:
                 sword.gameObject.GetComponentInChildren<DamageEffect>().damage += 1;
                 _hasSword = true;
+                collision.gameObject.SetActive(false);
                 break;
             case PickUp.eType.bow:
                 _hasBow = true;
+                collision.gameObject.SetActive(false);
                 break;
         }
 
-        Destroy(collision.gameObject);
         gui.RefreshGUI();
 
     }
