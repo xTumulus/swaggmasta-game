@@ -12,18 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/KeyEntry1.unity
     guid: 684220f9d73e0b55494723a3b6b8eb59
   - enabled: 1
-    path: Assets/Scenes/Game.unity
-    guid: afa9e961b0e17c967adfeb32b2411636
-  - enabled: 0
-    path: Assets/Scenes/Inventory.unity
-    guid: c746516402ce62b6a86e5c5c3023fb58
+    path: Assets/Scenes/Menu.unity
+    guid: cd126442e15c7a92dbef6af5fd89f34f
   - enabled: 1
     path: Assets/Scenes/KeyEntry.unity
     guid: 10bf22f3f3ab12e09bd512e928f7dbac
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
-    guid: cd126442e15c7a92dbef6af5fd89f34f
+    path: Assets/Scenes/Game.unity
+    guid: afa9e961b0e17c967adfeb32b2411636
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: fd170222e59ffaea09f59975b5e459ff
+  - enabled: 0
+    path: Assets/Scenes/Inventory.unity
+    guid: c746516402ce62b6a86e5c5c3023fb58
   m_configObjects: {}
