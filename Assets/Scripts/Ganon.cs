@@ -70,6 +70,8 @@ public class Ganon : Enemy {
 
             Debug.Log("Ganon takes " + damageEffect.damage + " damage");
             health -= damageEffect.damage;
+            sRend.color = Color.red;
+
             Debug.Log("Ganon health: " + health);
             if (health <= 0) Die();
 
