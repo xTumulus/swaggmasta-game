@@ -20,7 +20,7 @@ public class BlockPuzzle : MonoBehaviour {
                 if (block.inPlace != true) return;
             }
 
-            // Debug.Log(gameObject.name + " has all blocks in place");
+            Debug.Log(gameObject.name + " has all blocks in place");
             // Play sound?
             prize.SetActive(true);
             solved = true;

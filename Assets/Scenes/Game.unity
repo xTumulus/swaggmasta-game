@@ -3578,7 +3578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3958204916828784715, guid: 045686fb4e293b8ab92b8d31569b5d77, type: 3}
       propertyPath: m_Name
-      value: Teleporter
+      value: Teleporter30
       objectReference: {fileID: 0}
     - target: {fileID: 4768631520568763538, guid: 045686fb4e293b8ab92b8d31569b5d77, type: 3}
       propertyPath: m_LocalPosition.x
@@ -98137,7 +98137,7 @@ MonoBehaviour:
   knockbackSpeed: 10
   knockbackDuration: 0.25
   invincibleDuration: 0.5
-  maxWallet: 99
+  maxWallet: 200
   gui: {fileID: 1224187131}
   sword: {fileID: 1135362102}
   navManager: {fileID: 123629376}
@@ -98150,11 +98150,12 @@ MonoBehaviour:
   keyAttack: 122
   keyGadget: 120
   keyBow: 99
-  startWithGrappler: 0
+  keyMenu: 109
+  startWithGrappler: 1
   _health: 10
-  _lootKeys: 0
-  _dungeonKeys: 0
-  _wallet: 0
+  _lootKeys: 4
+  _dungeonKeys: 7
+  _wallet: 500
   _hasCompass: 0
   _hasMap: 0
   _hasBossKey: 0
@@ -98813,6 +98814,10 @@ PrefabInstance:
     - target: {fileID: 9082210499156178107, guid: 2c83b42b60e4022e3a1397b35fdb6fdc, type: 3}
       propertyPath: m_Name
       value: BlockPuzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082210499156178107, guid: 2c83b42b60e4022e3a1397b35fdb6fdc, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -101535,7 +101540,7 @@ PrefabInstance:
     - target: {fileID: 892309336734369226, guid: 045686fb4e293b8ab92b8d31569b5d77, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1545265327, guid: 05f072a9b020c47e581608971cc7392d, type: 3}
+      objectReference: {fileID: -450616192, guid: 05f072a9b020c47e581608971cc7392d, type: 3}
     - target: {fileID: 2016138389974563638, guid: 045686fb4e293b8ab92b8d31569b5d77, type: 3}
       propertyPath: destination
       value: 
@@ -101546,7 +101551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3958204916828784715, guid: 045686fb4e293b8ab92b8d31569b5d77, type: 3}
       propertyPath: m_Name
-      value: Teleporter
+      value: Teleporter20
       objectReference: {fileID: 0}
     - target: {fileID: 4768631520568763538, guid: 045686fb4e293b8ab92b8d31569b5d77, type: 3}
       propertyPath: m_LocalPosition.x
@@ -102086,6 +102091,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 97856340}
     m_Modifications:
+    - target: {fileID: 3220506384830651248, guid: c2cec990f082ab7769130f80d2a40778, type: 3}
+      propertyPath: itemType
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4790051415405085869, guid: c2cec990f082ab7769130f80d2a40778, type: 3}
       propertyPath: m_Name
       value: PickUpBow

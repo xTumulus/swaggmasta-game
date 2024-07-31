@@ -146,7 +146,9 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
 
     void Update() {
 
-        if (Input.GetKeyDown(keyMenu)) navManager.ReturnToMenu();
+        if (Input.GetKeyDown(keyMenu)) {
+            navManager.ReturnToMenu();
+        }
 
         if (isControlled) return;
 

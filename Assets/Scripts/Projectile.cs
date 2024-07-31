@@ -25,12 +25,12 @@ public class Projectile : MonoBehaviour, IFacingMover {
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-      Debug.Log("Projectile collision with " + collision.gameObject.name);
+      // Debug.Log("Projectile collision with " + collision.gameObject.name);
       Destroy(this.gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-      Debug.Log("Projectile triggered with " + collider.gameObject.name);
+      // Debug.Log("Projectile triggered with " + collider.gameObject.name);
       Destroy(this.gameObject);
     }
 
