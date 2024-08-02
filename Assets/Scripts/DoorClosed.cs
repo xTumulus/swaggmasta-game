@@ -31,10 +31,11 @@ public class DoorClosed : MonoBehaviour {
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-        if (mustClearEnemies) return;
-        // Debug.Log("Door collided with " + collision.gameObject.name);
-        if (collision.gameObject.GetComponent<Swagg>() != null) {
-            Destroy(gameObject);
+        if (!mustClearEnemies) {
+            // Debug.Log("Door collided with " + collision.gameObject.name);
+            if (collision.gameObject.GetComponent<Swagg>() != null) {
+                Destroy(gameObject);
+            }
         }
     }
 }
