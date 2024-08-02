@@ -242,14 +242,13 @@ MonoBehaviour:
   knockbackDuration: 0.25
   invincibleDuration: 0.5
   randomItemDrops: []
-  guaranteedItemDrop:
-  - {fileID: 0}
+  guaranteedItemDrop: []
   health: 1
   invincible: 1
   knockback: 0
   stun: 0
-  speed: 5
+  speed: 6
   timeThinkMin: 1
-  timeThinkMax: 4
+  timeThinkMax: 2
   facing: 0
   timeNextDecision: 0

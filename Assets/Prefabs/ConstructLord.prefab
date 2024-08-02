@@ -207,7 +207,7 @@ MonoBehaviour:
   stun: 0
   speed: 4
   timeThinkMin: 1
-  timeThinkMax: 4
+  timeThinkMax: 2
   facing: 0
   timeNextDecision: 0
 --- !u!61 &5977062056995661001
