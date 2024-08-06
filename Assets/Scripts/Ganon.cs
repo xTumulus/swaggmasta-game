@@ -14,13 +14,15 @@ public class Ganon : Enemy {
     public float timeThinkMax = 4f;
     public float timeVulnerableMin = 1f;
     public float timeVulnerableMax = 2f;
+    public float timeDamaged = 0.5f;
     public TMP_Text deathMessageOverlay;
 
     [Header("Dynamic: Ganon")]
     [Range(0,4)]
     public int facing = 0;
     public float timeNextDecision = 0;
-    public float timeUntilInvincible;
+    public float timeUntilInvincible = 0;
+    public float damageTimer = 0;
 
     private InRoom inRm;
     private Animator animator;
@@ -33,6 +35,9 @@ public class Ganon : Enemy {
     }
 
     protected override void Update() {
+        if (damageTimer < Time.time) {
+            sRend.color = Color.white;
+        }
 
         if (knockback) return;
 
@@ -65,14 +70,13 @@ public class Ganon : Enemy {
                 animator.Play("Ganon_Cry");
                 Debug.Log("Ganon is crying");
             }
-        }
-
-        if (!invincible) {
+        } else if (!invincible) {
             DamageEffect damageEffect = collider.gameObject.GetComponent<DamageEffect>();
             if (damageEffect == null) return;
 
             Debug.Log("Ganon takes " + damageEffect.damage + " damage");
             health -= damageEffect.damage;
+            damageTimer = Time.time + timeDamaged;
             sRend.color = Color.red;
 
             Debug.Log("Ganon health: " + health);
