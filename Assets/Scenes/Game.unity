@@ -61830,11 +61830,11 @@ PrefabInstance:
     - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: enemies.Array.data[3]
       value: 
-      objectReference: {fileID: 6770984654191378055, guid: 37bae4f1a0cc7256ba9d7a8b2efd89f6, type: 3}
+      objectReference: {fileID: 6770984654191378055, guid: 40cebf0d65695984db0992a867269407, type: 3}
     - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: enemies.Array.data[4]
       value: 
-      objectReference: {fileID: 6770984654191378055, guid: 37bae4f1a0cc7256ba9d7a8b2efd89f6, type: 3}
+      objectReference: {fileID: 6770984654191378055, guid: 40cebf0d65695984db0992a867269407, type: 3}
     - target: {fileID: 7279041078937287770, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: m_Offset.x
       value: 8
@@ -98296,9 +98296,9 @@ MonoBehaviour:
   keyMenu: 109
   startWithGrappler: 0
   _health: 10
-  _lootKeys: 2
-  _dungeonKeys: 7
-  _wallet: 200
+  _lootKeys: 0
+  _dungeonKeys: 0
+  _wallet: 0
   _hasCompass: 0
   _hasMap: 0
   _hasBossKey: 0
@@ -101630,7 +101630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: enemies.Array.size
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: enemies.Array.data[0]
@@ -101640,6 +101640,22 @@ PrefabInstance:
       propertyPath: enemies.Array.data[1]
       value: 
       objectReference: {fileID: 6770984654191378055, guid: d256c52cfdee05ca086e71d76c8bd74a, type: 3}
+    - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
+      propertyPath: enemies.Array.data[2]
+      value: 
+      objectReference: {fileID: 6770984654191378055, guid: 40cebf0d65695984db0992a867269407, type: 3}
+    - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
+      propertyPath: enemies.Array.data[3]
+      value: 
+      objectReference: {fileID: 6770984654191378055, guid: 40cebf0d65695984db0992a867269407, type: 3}
+    - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
+      propertyPath: enemies.Array.data[4]
+      value: 
+      objectReference: {fileID: 6770984654191378055, guid: 40cebf0d65695984db0992a867269407, type: 3}
+    - target: {fileID: 4512974845862172072, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
+      propertyPath: enemies.Array.data[5]
+      value: 
+      objectReference: {fileID: 6770984654191378055, guid: 40cebf0d65695984db0992a867269407, type: 3}
     - target: {fileID: 7279041078937287770, guid: b43ab1ce32343fabcac9667e6a45dd05, type: 3}
       propertyPath: m_Offset.x
       value: 8

@@ -237,7 +237,7 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
         {
             case eMode.attack:
                 animator.CrossFade("Swagg_Attack_" + currentCharacterDirection, 0);
-                animator.speed = 0;
+                animator.speed = 1;
                 break;
             case eMode.idle:
                 animator.CrossFade("Swagg_Walk_" + currentCharacterDirection, 0);

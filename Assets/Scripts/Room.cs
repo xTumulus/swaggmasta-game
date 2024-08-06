@@ -10,7 +10,7 @@ public class Room : MonoBehaviour {
     public bool respawnEnemies = false;
     public float maxRoomX = 16f;
     public float maxRoomY = 11f;
-    public float wallThinkness = 2f;
+    public float wallThickness = 2f;
     public float respawnTime = 20;
 
     private float nextRespawn;
@@ -30,19 +30,20 @@ public class Room : MonoBehaviour {
         if (respawnEnemies && nextRespawn < Time.time) {
             DestroyEnemies();
             SpawnEnemies();
-        } else if (!spawnedOnce) {
+        } else if (!respawnEnemies && !spawnedOnce) {
             SpawnEnemies();
             spawnedOnce = true;
         }
+
+        nextRespawn = Time.time + respawnTime;
+        Debug.Log("Time: " + Time.time);
+        Debug.Log("Respawn Time: " + nextRespawn);
     }
 
     protected void OnTriggerExit2D(Collider2D collider) {
 
         Debug.Log(collider.gameObject.name + " left " + gameObject.name);
-        if (respawnEnemies) {
-            nextRespawn = Time.time + respawnTime;
 
-        }
         if (overlayText != null) {
             overlayText.SetActive(false);
         }
@@ -74,8 +75,8 @@ public class Room : MonoBehaviour {
         List<Vector3> spawnPoints = new List<Vector3>();
 
         for (int i = 0; i < enemies.Count; i++) {
-            float x = Random.Range(0 + wallThinkness, maxRoomX - wallThinkness);
-            float y = Random.Range(0 + wallThinkness, maxRoomY - wallThinkness);
+            float x = Random.Range(0 + wallThickness, maxRoomX - wallThickness);
+            float y = Random.Range(0 + wallThickness, maxRoomY - wallThickness);
             spawnPoints.Add(new Vector3(this.transform.position.x + x, this.transform.position.y + y, 0));
         }
 
