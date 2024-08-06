@@ -239,12 +239,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   guaranteedItemDrop: []
-  health: 6
+  health: 4
   invincible: 0
   knockback: 0
   stun: 0
   speed: 2
   timeThinkMin: 1
-  timeThinkMax: 4
+  timeThinkMax: 3
   facing: 0
   timeNextDecision: 0

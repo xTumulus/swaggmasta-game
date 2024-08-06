@@ -201,13 +201,13 @@ MonoBehaviour:
   - {fileID: 2196661390660096981, guid: 669cf55775c744299bb8d3b634b671f0, type: 3}
   - {fileID: 4225375757917567533, guid: f5d5b6e03440e76caab8ee4239a26f53, type: 3}
   - {fileID: 7806994693311412850, guid: 17c1dbfe9e3ac28f48026313c89cbf43, type: 3}
-  health: 5
+  health: 6
   invincible: 0
   knockback: 0
   stun: 0
   speed: 4
   timeThinkMin: 1
-  timeThinkMax: 2
+  timeThinkMax: 1.5
   facing: 0
   timeNextDecision: 0
 --- !u!61 &5977062056995661001
