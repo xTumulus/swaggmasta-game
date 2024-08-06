@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using TMPro;
 using UnityEngine;
 
 public class Ganon : Enemy {
@@ -12,6 +14,7 @@ public class Ganon : Enemy {
     public float timeThinkMax = 4f;
     public float timeVulnerableMin = 1f;
     public float timeVulnerableMax = 2f;
+    public TMP_Text deathMessageOverlay;
 
     [Header("Dynamic: Ganon")]
     [Range(0,4)]
@@ -81,6 +84,26 @@ public class Ganon : Enemy {
                 animator.Play("Ganon_Attack");
             }
         }
+    }
+
+    protected override void Die() {
+        //TODO this should be a random string generator class
+        string allowedChars = "abcdefghijklmnop1234567890";
+        StringBuilder sb = new StringBuilder();
+
+        for(int i=0; i<4; i++) {
+            sb.Append(allowedChars[Random.Range(0, allowedChars.Length)]);
+        }
+
+        sb.Append("s");
+
+        for(int i=0; i<4; i++) {
+            sb.Append(allowedChars[Random.Range(0, allowedChars.Length)]);
+        }
+
+        deathMessageOverlay.text = "Congrats!\n\n" + sb.ToString();
+
+        base.Die();
     }
 
     void DecideDirection() {
