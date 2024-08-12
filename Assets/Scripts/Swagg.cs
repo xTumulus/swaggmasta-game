@@ -31,6 +31,7 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
     public GameObject sword;
     public NavManager navManager ;
     public RuntimeAnimatorController swaggP_Animator;
+    public AudioSource attackAudio;
 
     [Header("Dynamic")]
     public int currentInputDirection = -1;
@@ -236,6 +237,7 @@ public class Swagg: MonoBehaviour, IFacingMover, IKeyMaster {
         switch (mode)
         {
             case eMode.attack:
+                attackAudio.Play();
                 animator.CrossFade("Swagg_Attack_" + currentCharacterDirection, 0);
                 animator.speed = 1;
                 break;
